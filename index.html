@@ -4,26 +4,22 @@
         <div id="topbar">
             <h1 id="title">Jordan IMBERT</h1>
             <div id="menu">
-                <a href="#">Blog</a>
-                <a href="#">CV</a>
-                <a href="#">Portfolio</a>
+                <a href="/">Blog</a>
+                <a href="/cv">CV</a>
+                <a href="/portfolio">Portfolio</a>
             </div>
-           
-            
         </div>
         <hr>
         <div id="container">
-
-
-
         </div>
         <div id="footer">
-
-
-
         </div>
     </body>
     <style>
+        body{
+            font-size: 13pt;
+        }
+
         #menu a{
             text-decoration: none;
             margin-left: 20pt;
@@ -33,33 +29,28 @@
     </style>
     
     <script>
-       const Http = new XMLHttpRequest();
-       const url='https://api.github.com/repos/ecrin4102/ecrin4102.github.io/git/trees/main?recursive=1';
+        const Http = new XMLHttpRequest();
+        const url='https://api.github.com/repos/ecrin4102/ecrin4102.github.io/git/trees/main?recursive=1';
         Http.open("GET", url);
         Http.send();
-
         Http.onloadend = (e) => {
-            
             result = JSON.parse(Http.responseText);
-            
             result.tree.forEach(element => {
                 if(!element.path.includes("blog/")){ 
                     return;
                 }
-
-                var url2='https://raw.githubusercontent.com/ecrin4102/ecrin4102.github.io/main/' + element.path;
-                Http.open("GET", url2);
-                Http.send();
-
-                Http.onloadend = (e2) => {
-                    document.querySelector("#container").insertAdjacentHTML("afterbegin", Http.responseText);
+                
+                const url2 = 'https://raw.githubusercontent.com/ecrin4102/ecrin4102.github.io/main/' + element.path;
+                const Http2 = new XMLHttpRequest();
+                Http2.open("GET", url2);
+                Http2.send();
+                Http2.onloadend = (e2) => {  
+                    document.querySelector("#container").insertAdjacentHTML("afterbegin", 
+                    "<div class=\"post\">" + 
+                        Http2.responseText.slice(0,1024) +
+                    "</div>");
                 }
-
-            }); 
-            
-            
+            });
         }
-          
-        
     </script>
 </html>
