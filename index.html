@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
-    <head></head>
+    <head>
+        <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+        <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css'>
+    </head>
     <body>
         <div w3-include-html="h1.html"></div>
         <div id="topbar">
@@ -17,17 +20,17 @@
 
         <div class="wrap" style="clear: both;"></div>
         <hr>
-
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css'>
         <div id="main-container">
             <div id="sidebar">
                 <img="#"/>
                 <h2>Jordan IMBERT</h2>
                 <span id="job-description">Ingénieur en logiciel embarqué basé à Grenoble</span>
                 <ul id="picto">
-                        <li>Google map</li>
-                        <li>Github</li>
-                        <li>Gitlab</li>
-                        <li>Linkedin</li>
+                        <li><i class="fi fi-sr-marker"></i>Grenoble</li>
+                        <li><i class="fi fi-brands-github"></i><a href="https://github.com/ecrin4102">Github</a></li>
+                        <li><i class="fi fi-brands-gitlab"></i><a href="https://gitlab.com/sirac">Gitlab</a></li>
+                        <li><i class="fi fi-brands-linkedin"></i><a href="https://www.linkedin.com/in/jordan-imbert-94b28290/">Linkedin</a></li>
                 </ul>
             </div>
             <div id="sub-container">
@@ -42,6 +45,7 @@
             padding: 0;
             background-color:#E8DEDE1C;
             color:#2b2d30;
+            font-family: Segoe UI;
         }
 
         h1,h2,h3{
@@ -97,7 +101,9 @@
         }
 
         #sub-container{
-            float: right;width: 78%;margin-left: 2%;
+            float: right;
+            width: 75%;
+            margin-left: 5%;
         }
         
         .topbar{
@@ -124,8 +130,36 @@
             margin-bottom: 15px;
             background-image:url("images/picto-calendar.jpg");
             background-repeat: no-repeat;
-            background-position-x:72px;
-            padding-top:3px;
+            background-position-x:79px;
+        }
+
+        #sidebar{
+            margin:50px 0px;
+        }
+
+        #sidebar h2{
+            margin: 0px 0px 5px 0px;
+        }
+
+        #picto{
+            list-style:none;
+            padding: 0px;
+        }
+        #picto li{
+            margin:20px 0px;
+        }
+
+        #picto li i{
+            padding-right:12px;
+        }
+
+        #picto li a{
+            text-decoration: none;
+            color:inherit;
+        }
+
+        #picto li a:hover{
+            text-decoration: underline;
         }
 
     </style>
