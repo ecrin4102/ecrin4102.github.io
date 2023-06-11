@@ -133,6 +133,20 @@
             "2023.04.03-premier-post.html",
             "2023.04.04-deuxième-article.html"
         ];
+
+        function displayPost(title){
+            var posts = document.querySelectorAll('.post')
+            console.log(posts);
+        };
+
+
+
+
+
+
+
+
+
         posts.forEach(element => {
             const url2 = 'https://raw.githubusercontent.com/ecrin4102/ecrin4102.github.io/main/blog/' + element;
             const Http2 = new XMLHttpRequest();
@@ -140,11 +154,12 @@
             Http2.send();
             Http2.onloadend = (e2) => {  
                 document.querySelector("#sub-container").insertAdjacentHTML("afterbegin", 
-                "<a class=\"post\">" + 
+                "<a class=\"post\" onclick=\"displayPost(\'"+element+"\')\">" + 
                     Http2.responseText.slice(0,1024) +
                 "</a>");
             }
         });
+        
     </script>
 </body>
 </html>
