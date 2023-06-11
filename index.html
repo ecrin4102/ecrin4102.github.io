@@ -2,6 +2,7 @@
 <html>
     <head></head>
     <body>
+        <div w3-include-html="h1.html"></div>
         <div id="topbar">
             <div id="title">
                 Jordan IMBERT<br>
@@ -130,36 +131,64 @@
     </style>
     <script>
         var posts = [
-            "2023.04.03-premier-post.html",
-            "2023.04.04-deuxième-article.html"
+            {
+                "title" : "2023.04.03-premier-post.html",
+                "content" : ""
+            },
+            {
+                "title" : "2023.04.04-deuxième-article.html",
+                "content" : ""
+            }
         ];
+
+        
+        function getPost(title){
+            return new Promise(function (resolve, reject) {
+                const url2 = 'https://raw.githubusercontent.com/ecrin4102/ecrin4102.github.io/main/blog/' + title;
+                const Http = new XMLHttpRequest();
+                Http.open("GET", url2);
+            
+                Http.onloadend = (e2) => {
+                    resolve(Http.responseText);
+                }
+
+                Http.send();
+            });
+        }
 
         function displayPost(title){
             var posts = document.querySelectorAll('.post')
-            console.log(posts);
+            
+            posts.forEach(p => {
+                p.hidden = !p.outerHTML.includes(title);
+            });
+
+            getPost(title).then((result) =>{
+                document.getElementById(title).innerHTML = result;
+            });
         };
 
-
-
-
-
-
-
-
-
+        var promises = [];
         posts.forEach(element => {
-            const url2 = 'https://raw.githubusercontent.com/ecrin4102/ecrin4102.github.io/main/blog/' + element;
-            const Http2 = new XMLHttpRequest();
-            Http2.open("GET", url2);
-            Http2.send();
-            Http2.onloadend = (e2) => {  
-                document.querySelector("#sub-container").insertAdjacentHTML("afterbegin", 
-                "<a class=\"post\" onclick=\"displayPost(\'"+element+"\')\">" + 
-                    Http2.responseText.slice(0,1024) +
-                "</a>");
+                promises.push(getPost(element["title"]).then(result => {
+                   const p = self.posts.find(x => x["title"] == element["title"] )
+                   p["content"] = result
+                }))
             }
-        });
+        );
         
+        Promise.all(promises).then(() =>{
+            for(var i = 0 ; i < posts.length; i++){
+                document.getElementById("sub-container").insertAdjacentHTML("afterbegin", 
+                    "<a class=\"post\" id=\""+ posts[i]["title"] +"\"  href=\"./blog/"+posts[i]["title"]+"\">" 
+                        + 
+                        posts[i]["content"].slice(0, 1024)
+                        +
+                    "</a>"); 
+            }
+          
+        });
+
     </script>
 </body>
 </html>

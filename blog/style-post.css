@@ -1,0 +1,91 @@
+body{
+    font-size: 13pt;
+    margin: 0;
+    padding: 0;
+    background-color:#E8DEDE1C;
+    color:#2b2d30;
+}
+
+h1,h2,h3{
+    color:#5b6066; 
+}
+
+hr{
+    margin: 0;
+    padding: 0;
+}
+
+#topbar {
+    height:80px;
+    padding: 0;
+    margin: 0;
+}
+
+#title{
+    float: left;
+    margin-top: 10px;
+    margin-left: 15%;
+    font-size: 22px;
+    color: #222831;
+    font-weight: bolder;
+}
+
+.main-subtitle{
+    font-size: 0.75em;
+    font-weight: bold;
+    color: #535353;
+}
+
+#menu{
+    float: right;
+    margin-right: 15%;
+}
+
+#menu a{
+    text-decoration: none;
+    margin-left: 20pt;
+    font-size: 40px;
+    color:#222831;
+}
+
+#main-container{
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+#sidebar{
+    float: left;
+    width: 20%;
+}
+
+#sub-container{
+    float: right;width: 78%;margin-left: 2%;
+}
+
+.topbar{
+    float:left;
+}
+
+.post {
+    text-decoration: none;
+    color:inherit;
+}
+
+.post:hover h2, .post:hover{
+    color:#000000;
+}
+
+.post-title{
+    text-decoration: underline;
+    margin-bottom:5px;
+    font-size:30px;
+}
+
+.post-date {
+    font-size:15px;
+    margin-bottom: 15px;
+    background-image:url("../images/picto-calendar.jpg");
+    background-repeat: no-repeat;
+    background-position-x:72px;
+    padding-top:3px;
+}
