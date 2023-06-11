@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
     <head></head>
     <body>
@@ -29,16 +30,6 @@
                 </ul>
             </div>
             <div id="sub-container">
-<a class="post" href="/blog/2023.04.03-premier-post">
-    <h2 class=post-title>Premier post</h2>
-    <div class="post-date">03/04/2023</div>
-    <div class=post-content>
-    Création de mon premier article de blog
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque lacinia odio nec justo consequat vestibulum. Suspendisse feugiat orci vel molestie tempor. Ut consectetur sapien felis, quis ultricies metus aliquet vitae. Duis vulputate ornare varius. Proin non laoreet tellus. Maecenas in malesuada enim. Vestibulum vel pharetra nunc. Pellentesque ut augue efficitur, porttitor dolor ac, euismod enim. Maecenas at arcu ipsum. Donec vitae posuere urna. Curabitur pretium, risus elementum blandit cursus, augue tortor convallis ipsum, ut faucibus justo mauris tristique tortor. Fusce faucibus auctor dolor, quis pretium diam mattis in. Sed lacus turpis, sagittis eu finibus vitae, laoreet sit amet ipsum. Aliquam erat volutpat. Integer facilisis aliquam felis, ac facilisis velit hendrerit ac. Praesent ac blandit diam, in mattis tortor. 
-    ie tempor. Ut consectetur sapien felis, quis ultricies metus aliquet vitae. Duis vulputate ornare varius. Proin non laoreet tellus. Maecenas in malesuada enim. Vestibulum vel pharetra nunc. Pellentesque ut augue efficitur, porttitor dolor ac, euismod enim. Maecenas at arcu ipsum. Donec vitae posuere urna. Curabitur pretium, risus elementum blandit cursus, augue tortor convallis ipsum, ut faucibus justo mauris tristique tortor. Fusce faucibus auctor dolor, quis pretium diam mattis in. Sed lacus turpis, sagittis eu finibus vitae, laoreet sit amet ipsum. Aliquam erat volutpat. Integer facilisis aliquam felis, ac facilisis velit hendrerit ac. Praesent ac blandit diam, in mattis tortor. 
-    </div>
-</a>
-
             </div>
         </div>
         <div id="footer"></div>
@@ -136,38 +127,24 @@
             padding-top:3px;
         }
 
-
-
-
     </style>
-    
     <script>
-        /*
-        const Http = new XMLHttpRequest();
-        const url='https://api.github.com/repos/ecrin4102/ecrin4102.github.io/git/trees/main?recursive=1';
-        Http.open("GET", url);
-        Http.send();
-        Http.onloadend = (e) => {
-            result = JSON.parse(Http.responseText);
-            result.tree.forEach(element => {
-                if(!element.path.includes("blog/")){ 
-                    return;
-                }
-                
-                const url2 = 'https://raw.githubusercontent.com/ecrin4102/ecrin4102.github.io/main/' + element.path;
-                const Http2 = new XMLHttpRequest();
-                Http2.open("GET", url2);
-                Http2.send();
-                Http2.onloadend = (e2) => {  
-                    document.querySelector("#sub-container").insertAdjacentHTML("afterbegin", 
-                    "<a class=\"post\">" + 
-                        Http2.responseText.slice(0,1024) +
-                    "</a>");
-                }
-            });
-        }
-        */
+        var posts = [
+            "2023.04.03-premier-post.html",
+            "2023.04.04-deuxième-article.html"
+        ];
+        posts.forEach(element => {
+            const url2 = 'https://raw.githubusercontent.com/ecrin4102/ecrin4102.github.io/main/blog/' + element;
+            const Http2 = new XMLHttpRequest();
+            Http2.open("GET", url2);
+            Http2.send();
+            Http2.onloadend = (e2) => {  
+                document.querySelector("#sub-container").insertAdjacentHTML("afterbegin", 
+                "<a class=\"post\">" + 
+                    Http2.responseText.slice(0,1024) +
+                "</a>");
+            }
+        });
     </script>
-
 </body>
 </html>
