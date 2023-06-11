@@ -171,8 +171,10 @@
         var promises = [];
         posts.forEach(element => {
                 promises.push(getPost(element["title"]).then(result => {
-                   const p = self.posts.find(x => x["title"] == element["title"] )
-                   p["content"] = result
+                   const p = self.posts.find(x => x["title"] == element["title"])
+                   let parser = new DOMParser();
+                   const doc = parser.parseFromString(result, 'text/html');
+                   p["content"] = doc.getElementById("sub-container").innerHTML
                 }))
             }
         );
@@ -186,7 +188,6 @@
                         +
                     "</a>"); 
             }
-          
         });
 
     </script>
