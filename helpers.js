@@ -1,9 +1,12 @@
 function getHtml(){
     return new Promise(function (resolve, reject) {
-        const url2 = 'https://raw.githubusercontent.com/ecrin4102/ecrin4102.github.io/main/template.html';              const Http = new XMLHttpRequest();
-        Http.open("GET", url2);
+        var url = 'https://raw.githubusercontent.com/ecrin4102/ecrin4102.github.io/main/template.html';              
+        var Http = new XMLHttpRequest();
+        
+        Http.open("GET", url);
         Http.onloadend = (e2) => {
             result = Http.responseText
+            console.log(result)
             let parser = new DOMParser();
             const doc = parser.parseFromString(result, 'text/html');
             document.body.insertAdjacentHTML("afterbegin", doc.body.innerHTML);
@@ -17,9 +20,9 @@ function getHtml(){
 
 function getPost(title){
     return new Promise(function (resolve, reject) {
-        const url2 = 'https://raw.githubusercontent.com/ecrin4102/ecrin4102.github.io/main/blog/' + title;
-        const Http = new XMLHttpRequest();
-        Http.open("GET", url2);
+        var url = 'https://raw.githubusercontent.com/ecrin4102/ecrin4102.github.io/main/blog/' + title;
+        var Http = new XMLHttpRequest();
+        Http.open("GET", url);
     
         Http.onloadend = (e2) => {
             resolve(Http.responseText);
