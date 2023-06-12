@@ -6,7 +6,6 @@ function getHtml(){
         Http.open("GET", url);
         Http.onloadend = (e2) => {
             result = Http.responseText
-            console.log(result)
             let parser = new DOMParser();
             const doc = parser.parseFromString(result, 'text/html');
             document.body.insertAdjacentHTML("afterbegin", doc.body.innerHTML);
