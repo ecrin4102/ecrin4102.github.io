@@ -3,131 +3,6 @@
 <body>
 
 </body>
-<style>
-        body{
-            font-size: 13pt;
-            margin: 0;
-            padding: 0;
-            background-color:#E8DEDE1C;
-            color:#2b2d30;
-            font-family: Segoe UI;
-        }
-
-        h1,h2,h3{
-            color:#5b6066; 
-        }
-
-        hr{
-            margin: 0;
-            padding: 0;
-        }
-
-        #topbar {
-            height:80px;
-            padding: 0;
-            margin: 0;
-        }
-
-        #title{
-            float: left;
-            margin-top: 10px;
-            margin-left: 15%;
-            font-size: 22px;
-            color: #222831;
-            font-weight: bolder;
-        }
-
-        .main-subtitle{
-            font-size: 0.75em;
-            font-weight: bold;
-            color: #535353;
-        }
-
-        #menu{
-            float: right;
-            margin-right: 15%;
-        }
-
-        #menu a{
-            text-decoration: none;
-            margin-left: 20pt;
-            font-size: 40px;
-            color:#222831;
-        }
-
-        #main-container{
-            margin-left: 15%;
-            margin-right: 15%;
-        }
-
-        #sidebar{
-            float: left;
-            width: 20%;
-        }
-
-        #sub-container{
-            float: right;
-            width: 75%;
-            margin-left: 5%;
-        }
-        
-        .topbar{
-            float:left;
-        }
-
-        .post {
-            text-decoration: none;
-            color:inherit;
-        }
-        
-        .post:hover h2, .post:hover{
-            color:#000000;
-        }
-
-        .post-title{
-            text-decoration: underline;
-            margin-bottom:5px;
-            font-size:30px;
-        }
-
-        .post-date {
-            font-size:15px;
-            margin-bottom: 15px;
-            background-image:url("images/picto-calendar.jpg");
-            background-repeat: no-repeat;
-            background-position-x:79px;
-        }
-
-        #sidebar{
-            margin:50px 0px;
-        }
-
-        #sidebar h2{
-            margin: 0px 0px 5px 0px;
-        }
-
-        #picto{
-            list-style:none;
-            padding: 0px;
-        }
-        #picto li{
-            margin:20px 0px;
-        }
-
-        #picto li i{
-            padding-right:12px;
-        }
-
-        #picto li a{
-            text-decoration: none;
-            color:inherit;
-        }
-
-        #picto li a:hover{
-            text-decoration: underline;
-        }
-
-    </style>
     <script type="text/javascript" src="helpers.js"></script>
     <script>
         var posts = [
@@ -141,51 +16,32 @@
             }
         ];
 
-        function displayPost(title){
-            var posts = document.querySelectorAll('.post')
-            
-            posts.forEach(p => {
-                p.hidden = !p.outerHTML.includes(title);
-            });
-
-            getPost(title).then((result) =>{
-                document.getElementById(title).innerHTML = result;
-            });
-        };
-        getHtml();
-
+        //Récupération de tous les posts sous forme de promesse et stockage du contenu dans un tableau
         var promises = [];
-
         posts.forEach(element => {
             const p = self.posts.find(x => x["title"] == element["title"]);
-            let parser = new DOMParser();
-            getPost(element["title"]).then((result) => {
-                console.log(result)
+            promises.push(getPost(element["title"]).then(result => {
+                let parser = new DOMParser();
                 const doc = parser.parseFromString(result, 'text/html');
-                p["content"] = doc.getElementById("post").innerHTML
-                document.getElementById("sub-container").insertAdjacentHTML("afterbegin", 
-                    "<a class=\"post\" id=\""+ p["title"] +"\"  href=\"./blog/"+p["title"]+"\">" 
-                        + 
-                        p["content"].slice(0, 1024) 
-                        +
-                    "...</div></a>");
-                    
+                p["content"] = doc.getElementById("post").innerHTML.slice(0, 1024) 
+                }))
+            }
+        );
+        
+        //Récupération dynamique de l'html principale
+        //puis attente de la récupération de tous les posts et enfin insertion dans le corps
+        //html dans le bon ordre.
+        getHtml().then(()=>{
+            Promise.all(promises).then(result =>{
+                for(var i = 0 ; i < posts.length; i++){
+                    document.getElementById("sub-container").insertAdjacentHTML("afterbegin", 
+                        "<a class=\"post\" id=\""+ posts[i]["title"] +"\"  href=\"./blog/"+posts[i]["title"]+"\">" 
+                            + 
+                            posts[i]["content"]
+                            +
+                        "...</div></a>"); 
+                }
             });
         });
-    
-        
-
-        /*
-        Promise.all(promises).then(result =>{
-            for(var i = 0 ; i < posts.length; i++){
-                document.getElementById("sub-container").insertAdjacentHTML("afterbegin", 
-                    "<a class=\"post\" id=\""+ posts[i]["title"] +"\"  href=\"./blog/"+posts[i]["title"]+"\">" 
-                        + 
-                        posts[i]["content"].slice(0, 1024) 
-                        +
-                    "...</div></a>"); 
-            }
-        });
-        */
     </script>
 </html>
