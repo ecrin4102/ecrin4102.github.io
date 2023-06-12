@@ -1,4 +1,9 @@
-    <style>
+<!DOCTYPE html>
+<html>
+<body>
+
+</body>
+<style>
         body{
             font-size: 13pt;
             margin: 0;
@@ -123,6 +128,7 @@
         }
 
     </style>
+    <script type="text/javascript" src="helpers.js"></script>
     <script>
         var posts = [
             {
@@ -134,35 +140,6 @@
                 "content" : ""
             }
         ];
-
-        function getHtml(){
-            return new Promise(function (resolve, reject) {
-                const url2 = 'https://raw.githubusercontent.com/ecrin4102/ecrin4102.github.io/main/template.html';              const Http = new XMLHttpRequest();
-                Http.open("GET", url2);
-            
-                Http.onloadend = (e2) => {
-                    console.log(Http.responseText);
-                    resolve(Http.responseText);
-                    
-                }
-
-                Http.send();
-            });
-        }
-        
-        function getPost(title){
-            return new Promise(function (resolve, reject) {
-                const url2 = 'https://raw.githubusercontent.com/ecrin4102/ecrin4102.github.io/main/blog/' + title;
-                const Http = new XMLHttpRequest();
-                Http.open("GET", url2);
-            
-                Http.onloadend = (e2) => {
-                    resolve(Http.responseText);
-                }
-
-                Http.send();
-            });
-        }
 
         function displayPost(title){
             var posts = document.querySelectorAll('.post')
@@ -176,10 +153,7 @@
             });
         };
 
-        getHtml().then((result) => {
-            console.log(result);
-            self.insertAdjacentHTML("beforebegin", result);
-        });
+        getHtml();
 
         var promises = [];
         posts.forEach(element => {
@@ -197,8 +171,10 @@
                 document.getElementById("sub-container").insertAdjacentHTML("afterbegin", 
                     "<a class=\"post\" id=\""+ posts[i]["title"] +"\"  href=\"./blog/"+posts[i]["title"]+"\">" 
                         + 
-                        posts[i]["content"].slice(0, 1024)
+                        posts[i]["content"].slice(0, 1024) 
                         +
-                    "</a>"); 
+                    "...</div></a>"); 
             }
         });
+    </script>
+</html>
