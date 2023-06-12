@@ -152,21 +152,33 @@
                 document.getElementById(title).innerHTML = result;
             });
         };
-
         getHtml();
 
         var promises = [];
+
         posts.forEach(element => {
-                promises.push(getPost(element["title"]).then(result => {
-                   const p = self.posts.find(x => x["title"] == element["title"])
-                   let parser = new DOMParser();
-                   const doc = parser.parseFromString(result, 'text/html');
-                   p["content"] = doc.getElementById("sub-container").innerHTML
-                }))
-            }
-        );
+            const p = self.posts.find(x => x["title"] == element["title"]);
+            let parser = new DOMParser();
+            getPost(element["title"]).then((result) => {
+                console.log(result)
+                const doc = parser.parseFromString(result, 'text/html');
+                console.log(doc)
+                /*
+                p["content"] = doc.getElementById("sub-container").innerHTML
+                document.getElementById("sub-container").insertAdjacentHTML("afterbegin", 
+                    "<a class=\"post\" id=\""+ p["title"] +"\"  href=\"./blog/"+p["title"]+"\">" 
+                        + 
+                        p["content"].slice(0, 1024) 
+                        +
+                    "...</div></a>");
+                    */ 
+            });
+        });
+    
         
-        Promise.all(promises).then(() =>{
+
+        /*
+        Promise.all(promises).then(result =>{
             for(var i = 0 ; i < posts.length; i++){
                 document.getElementById("sub-container").insertAdjacentHTML("afterbegin", 
                     "<a class=\"post\" id=\""+ posts[i]["title"] +"\"  href=\"./blog/"+posts[i]["title"]+"\">" 
@@ -176,5 +188,6 @@
                     "...</div></a>"); 
             }
         });
+        */
     </script>
 </html>
