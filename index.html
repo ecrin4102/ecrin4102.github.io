@@ -162,16 +162,14 @@
             getPost(element["title"]).then((result) => {
                 console.log(result)
                 const doc = parser.parseFromString(result, 'text/html');
-                console.log(doc)
-                /*
-                p["content"] = doc.getElementById("sub-container").innerHTML
+                p["content"] = doc.getElementById("post").innerHTML
                 document.getElementById("sub-container").insertAdjacentHTML("afterbegin", 
                     "<a class=\"post\" id=\""+ p["title"] +"\"  href=\"./blog/"+p["title"]+"\">" 
                         + 
                         p["content"].slice(0, 1024) 
                         +
                     "...</div></a>");
-                    */ 
+                    
             });
         });
     
