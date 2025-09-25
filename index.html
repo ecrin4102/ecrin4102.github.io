@@ -1,51 +1,33 @@
-<!DOCTYPE html>
-<html>
+
+<head>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css'>
+<link rel="stylesheet" href="style.css">    
+</head>
 <body>
+    <div id="topbar">
+        <div id="title">
+            Jordan IMBERT<br>
+            <span class="main-subtitle">Blog personnel</span>
+        </div>
+</div>
 
-</body>
-    <script type="text/javascript" src="helpers.js"></script>
-    <script>
-        var posts = [
-            {
-                "title" : "2023.06.12-creation-du-blog.html",
-                "content" : ""
-            },
-            {
-                "title" : "2023.06.27-le-scientifique-ou-le-paradoxe-ecologique.html",
-                "content" : ""
-            },
-            {
-                "title" : "2024.07.02-mesure-d-adaptation-au-changement-climatique.html",
-                "content" : ""
-            }
-        ];
-
-        //Récupération de tous les posts sous forme de promesse et stockage du contenu dans un tableau
-        var promises = [];
-        posts.forEach(element => {
-            const p = self.posts.find(x => x["title"] == element["title"]);
-            promises.push(getPost(element["title"]).then(result => {
-                let parser = new DOMParser();
-                const doc = parser.parseFromString(result, 'text/html');
-                p["content"] = doc.getElementById("post").innerHTML.slice(0, 1024) 
-                }))
-            }
-        );
+<div class="wrap" style="clear: both;"></div>
+<hr>
+<div id="main-container">
+    <div id="sidebar">
+        <h2>Jordan IMBERT</h2>
+        <span id="job-description">Ingénieur en logiciel embarqué basé à Grenoble</span>
+        <ul id="picto">
+                <li><i class="fi fi-sr-marker"></i>Grenoble</li>
+                <li><i class="fi fi-brands-github"></i><a href="https://github.com/ecrin4102">Github</a></li>
+                <li><i class="fi fi-brands-gitlab"></i><a href="https://gitlab.com/sirac">Gitlab</a></li>
+                <li><i class="fi fi-brands-linkedin"></i><a href="https://www.linkedin.com/in/jordan-imbert-94b28290/">Linkedin</a></li>
+        </ul>
+    </div>
+    <div id="sub-container">
         
-        //Récupération dynamique de l'html principale
-        //puis attente de la récupération de tous les posts et enfin insertion dans le corps
-        //html dans le bon ordre.
-        getHtml().then(()=>{
-            Promise.all(promises).then(result =>{
-                for(var i = 0 ; i < posts.length; i++){
-                    document.getElementById("sub-container").insertAdjacentHTML("afterbegin", 
-                        "<a class=\"post\" id=\""+ posts[i]["title"] +"\"  href=\"./blog/"+posts[i]["title"]+"\">" 
-                            + 
-                            posts[i]["content"]
-                            +
-                        "...</div></a>"); 
-                }
-            });
-        });
-    </script>
-</html>
+    </div>
+</div>
+<div id="footer"></div>
+</body>
