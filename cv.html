@@ -16,15 +16,62 @@
         page-break-inside: avoid !important;
       }
       .cv-editor-window {
+        box-shadow: none !important;
+        border: none !important;
+        background: #fff !important;
+        color: #222 !important;
+        font-family: 'Fira Mono', 'Consolas', 'Liberation Mono', monospace;
         page-break-before: avoid !important;
         page-break-after: avoid !important;
         page-break-inside: avoid !important;
+      }
+      .cv-editor-titlebar, .cv-editor-buttons, .cv-editor-title {
+        display: none !important;
       }
       .cv {
+        background: #fff !important;
+        color: #222 !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        display: grid !important;
+        grid-template-columns: 280px 1fr !important;
         page-break-before: avoid !important;
         page-break-after: avoid !important;
         page-break-inside: avoid !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
       }
+      .side {
+        background: #fff !important;
+        color: #222 !important;
+        display: block !important;
+        page-break-inside: avoid !important;
+      }
+      .main, .job, .project, .badge, .muted, .meta, .section-title {
+        background: #fff !important;
+        color: #222 !important;
+        border: none !important;
+      }
+      h2, h3, strong {
+        color: #111 !important;
+      }
+      a {
+        color: #0a0a0a !important;
+        text-decoration: underline;
+      }
+      .print-note {
+        color: #444 !important;
+      }
+      .pill {
+        background: #eee !important;
+        color: #222 !important;
+        border: 1px solid #ccc !important;
+      }
+      * {
+        box-shadow: none !important;
+      }
+      a::after{content:""}
     }
     :root{
       --bg:#23272e;
