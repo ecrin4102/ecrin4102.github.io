@@ -7,6 +7,25 @@
   <meta name="description" content="CV technique — Ingénieur Logiciel Embarqué" />
   <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    @media print {
+      html, body {
+        margin: 0 !important;
+        padding: 0 !important;
+        page-break-before: avoid !important;
+        page-break-after: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      .cv-editor-window {
+        page-break-before: avoid !important;
+        page-break-after: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      .cv {
+        page-break-before: avoid !important;
+        page-break-after: avoid !important;
+        page-break-inside: avoid !important;
+      }
+    }
     :root{
       --bg:#23272e;
       --card:#282c34;
@@ -84,8 +103,54 @@
       .main{padding:20px}
     }
     @media print{
-      body{margin:0;background:white}
-      .cv{box-shadow:none;border-radius:0}
+      body {
+        margin: 0;
+        background: #fff !important;
+        color: #222 !important;
+      }
+      .cv-editor-window {
+        box-shadow: none !important;
+        border: none !important;
+        background: #fff !important;
+        color: #222 !important;
+        font-family: 'Fira Mono', 'Consolas', 'Liberation Mono', monospace;
+      }
+      .cv-editor-titlebar, .cv-editor-buttons, .cv-editor-title {
+        display: none !important;
+      }
+      .cv {
+        background: #fff !important;
+        color: #222 !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+      }
+      .side {
+        background: #fff !important;
+        color: #222 !important;
+      }
+      .main, .job, .project, .badge, .muted, .meta, .section-title {
+        background: #fff !important;
+        color: #222 !important;
+        border: none !important;
+      }
+      h2, h3, strong {
+        color: #111 !important;
+      }
+      a {
+        color: #0a0a0a !important;
+        text-decoration: underline;
+      }
+      .print-note {
+        color: #444 !important;
+      }
+      .pill {
+        background: #eee !important;
+        color: #222 !important;
+        border: 1px solid #ccc !important;
+      }
+      * {
+        box-shadow: none !important;
+      }
       a::after{content:""}
     }
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
