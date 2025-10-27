@@ -29,10 +29,6 @@
         page-break-inside: avoid !important;
       }
 
-      .cv-editor-titlebar, .cv-editor-buttons, .cv-editor-title {
-        display: none !important;
-      }
-
       .cv {
         background: #f9f9f9 !important;
         color: #9e9e9e !important;
@@ -67,9 +63,6 @@
         border: none !important;
       }
 
-      h2, h3, strong {
-        color: #111 !important;
-      }
       a {
         color: #0a0a0a !important;
         text-decoration: underline;
@@ -90,10 +83,14 @@
         border: 1px solid #ccc !important;
       }
 
+      .job ul li{line-height: 100%;font-size: 12px;}
+
       .badge {
         background: #f0f0f0  !important;
         color: #0b93cc !important;
       }
+      
+      .meta{color: #555 !important; font-style: italic;}
     }
 
     @media (max-width:820px){
@@ -114,6 +111,11 @@
     }
     *{box-sizing:border-box}
   body{background:#fff;margin:24px;display:flex;justify-content:center}
+    em{
+      color:#d49306;
+      font-weight: bold;
+      font-style: normal;
+    }
     .cv-editor-window {
       width:100%;
       max-width:var(--max-width);
@@ -156,25 +158,30 @@
     .photo{width:96px;height:96px;border-radius:14px;background:linear-gradient(135deg,var(--primary),#06b6d4);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:22px;margin-bottom:18px}
     .name{font-size:20px;font-weight:700;margin-bottom:6px}
     .role{font-size:13px;color:var(--muted);margin-bottom:14px}
-    .contact, .skills, .tools, .languages{margin-top:12px}
-    .section-title{font-size:12px;font-weight:600;color:var(--primary);letter-spacing:0.6px;margin-bottom:10px}
+    .contact{margin-top:12px}
+    .skills, .tools, .languages{ margin-top:25px;}
+    .section-title{font-size:12px;font-weight:600;color:var(--primary);letter-spacing:0.6px;margin-bottom:10px; text-align: center;}
     .muted{font-size:13px;color:var(--muted)}
     .contact a{color:var(--primary);text-decoration:none}
     .pill{display:inline-block;background:#1e2228;padding:6px 8px;border-radius:8px;font-size:12px;margin:4px 4px 4px 0}
     .skill-list{display:flex;flex-wrap:wrap}
-    .main{padding:28px 10px}
+    .main{padding:10px}
     .summary{margin-bottom:14px}
-    h2{font-size:16px;margin:0 0 10px 0;color:var(--primary);}
-    .job{padding:12px;border-radius:10px;margin-bottom:12px;background:#22252b;border:1px solid #181a1f;}
+    .summary p{margin:0}
+    h2{font-size:15px;margin:0 0 5px 0;color:var(--primary);}
+    .job{padding:5px;border-radius:10px;margin-bottom:5px;background:#22252b;border:1px solid #181a1f;}
     .job h3{margin:0;font-size:15px;color:#e06c75;}
     .meta{font-size:13px;color:var(--muted);margin-bottom:8px}
-    ul{margin:6px 0 12px 18px}
+    .job ul li{line-height: 135%;}
+    ul{margin:0px;padding-left:25px}
     .projects{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
     .project{border-radius:10px;padding:12px;background:#23272e;border:1px solid #181a1f}
     .project h3{margin:0;font-size:14px;color:#e06c75}
     .badge{font-size:11px;padding:4px 6px;border-radius:6px;background:#282c34;color:var(--primary);display:inline-block}
     .print-note{font-size:12px;color:var(--muted);margin-top:8px}
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    #edu-title + .job, #edu-title + .job ~ .job{display:inline-block;width:calc(33.33% - 8px);vertical-align:top}
+    #edu-title + .job:last-of-type{margin-right:0}
   </style>
 </head>
 <body>
@@ -232,54 +239,54 @@
         <main class="main">
           <section class="summary">
             <h2>Résumé</h2>
-            <p class="muted">Ingénieur logiciel embarqué avec X années d'expérience dans le développement de firmware pour systèmes temps réel, conception de drivers et optimisation des performances sur microcontrôleurs. Habitué aux cycles de développement agile et à la collaboration interdisciplinaire (HW/SW).</p>
+            <p class="muted">Ingénieur logiciel embarqué avec <em>9 années</em> d'expérience dans le développement de firmware pour systèmes temps réel, conception de drivers et développement sur système critique (SIL0/SIL2) </p>
           </section>
           <section aria-labelledby="exp-title">
             <h2 id="exp-title">Expérience</h2>
             <div class="job" aria-labelledby="job1">
-              <h3>Ingénieur Firmware — Entreprise Exemple</h3>
-              <div class="meta">Jan 2022 — Présent · Toulouse, France</div>
+              <h3>Ingénieur Firmware — Full electronic system</h3>
+              <div class="meta">Oct 2023 — Présent · Echirolles</div>
               <ul class="muted">
-                <li>Développement et maintenance de firmware en C sur STM32 (Cortex-M) avec FreeRTOS.</li>
-                <li>Conception de drivers pour périphériques SPI/I2C et gestion de l'alimentation basse consommation.</li>
-                <li>Implémentation de tests unitaires et intégration continue (GitLab CI) pour garantir la qualité du code.</li>
+                <li>Migration stack <em>Lora</em> sur version 1.0.4 avec passage de la pre-certiciation validée et gestion trés basse consommation</li>
+                <li>Conception firmware intégrale d'un capteur de tension avec haute tension d'isolation. Conforme à la norme ferroviaire <em>SIL0</em></li>
+                <li>Développement d'un driver USB sur <em>STM32</em> pour supporter la fonction "hub" afin de connecter plusieurs périphériques</li>
               </ul>
             </div>
             <div class="job" aria-labelledby="job2">
-              <h3>Ingénieur Logiciel Embarqué — Start-up IoT</h3>
-              <div class="meta">Sep 2018 — Déc 2021 · Paris, France</div>
+              <h3>Ingénieur Logiciel Embarqué - Responsable R&D — Myotis</h3>
+              <div class="meta">Oct 2016 — Oct 20203 · Echirolles</div>
               <ul class="muted">
-                <li>Développement d'une pile de communication propriétaire et optimisation du temps de latence.</li>
-                <li>Participation à la validation matérielle: mise au point avec oscilloscopes et analyseur logique.</li>
-                <li>Réduction de la consommation en veille de 40% via stratégies d'horloge et modes bas puissance.</li>
+                <li>Conception SW/HW d'une station de mesure à forte contrainte temps réel et low power sur <em>STM32</em> et <em>FreeRtos</em>. Développement
+                  d'un simulateur sur PC, <em>gitlab CI/CD</em> et unit test automatique, multiples drivers (ADC externes, GPS, Modems 4G, FatFS...)
+                </li>
+                <li>Conception SW/HW d'une station de mesure radio sous <em>STM32</em> et <em>FreeRtos</em> ultra basse conso (10µA).</li>
+                <li>Supervision d'une équipe de 2 personnes, entretients d'embauche, rédaction des dossiers de financement, visites clients</li>
+                <li>Administration de serveurs linux, developpments de programmes et scripts applicatif</li>
               </ul>
             </div>
-          </section>
-          <section style="margin-top:6px" aria-labelledby="projects-title">
-            <h2 id="projects-title">Projets sélectionnés</h2>
-            <div class="projects">
-              <article class="project">
-                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-                  <h3>Module de télémétrie bas débit</h3>
-                  <span class="badge">C · FreeRTOS</span>
-                </div>
-                <p class="muted">Développement d'un firmware fiable pour transmission sur CAN / LoRa, gestion des retransmissions et diagnostics.</p>
-              </article>
-              <article class="project">
-                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-                  <h3>Bootloader sécurisé</h3>
-                  <span class="badge">C · Cryptographie</span>
-                </div>
-                <p class="muted">Implémentation d'un bootloader OTA avec vérification d'intégrité et signature électronique pour mises à jour sécurisées.</p>
-              </article>
+            <div class="job" aria-labelledby="job2">
+              <h3>Alternance en ingénieur essai CEM — Myotis</h3>
+              <div class="meta">Sep 2013 — Sep 2016 · Echirolles</div>
+              <ul class="muted">
+                <li>Réalisation d'un banc de test automatique et d'un logiciel de monitoring en C# multithread avec connexion snmp</li>
+                <li>Passage des tests CEM sur les onduleurs en interne ou externe (cofrac)</li>
+                <li>Déplacement de 3mois en Finlande pour effectuer mon stage obligatoire</li>
+              </ul>
             </div>
           </section>
           <section style="margin-top:12px" aria-labelledby="edu-title">
             <h2 id="edu-title">Formation & Certifications</h2>
             <div class="job">
-              <h3>Diplôme d'ingénieur — École Exemple</h3>
-              <div class="meta">2014 — 2018 · Spécialité Systèmes Embarqués</div>
-              <div class="muted">Certifs: FreeRTOS & Zephyr (optionnel), Sécurité embarquée</div>
+              <h3>Diplôme d'ingénieur — Polytech - Grenoble</h3>
+              <div class="meta">2013 — 2016 · Spécialité Systèmes Embarqués</div>
+            </div>
+            <div class="job">
+              <h3>DUT — GEII - Grenoble</h3>
+              <div class="meta">2011 — 2013 · Major de promotion - 1/4 de final au concours de robot</div>
+            </div>
+            <div class="job">
+              <h3>BAC — Bac S - Gap</h3>
+              <div class="meta">2011 — 2013 · Spé physique</div>
             </div>
         </main>
       </article>
