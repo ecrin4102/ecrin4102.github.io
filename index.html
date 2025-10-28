@@ -1,36 +1,296 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CV — Ingénieur Logiciel Embarqué</title>
+  <meta name="description" content="CV technique — Ingénieur Logiciel Embarqué" />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    @media print {
+      html, body {
+        margin: 0 !important;
+        padding: 0 !important;
+        page-break-before: avoid !important;
+        page-break-after: avoid !important;
+        page-break-inside: avoid !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust:exact !important;
+      }
 
-    <head>
-        <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
-        <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css'>
-        <link rel="stylesheet" href="style.css">    
-    </head>
-    <body>
-        <div id="topbar">
-            <div id="title">
-                Jordan IMBERT<br>
-                <span class="main-subtitle">Blog personnel</span>
+      .cv-editor-window {
+        box-shadow: none !important;
+        border: none !important;
+        background: #13a1ff !important;
+        color: #222 !important;
+        font-family: 'Fira Mono', 'Consolas', 'Liberation Mono', monospace;
+        page-break-before: avoid !important;
+        page-break-after: avoid !important;
+        page-break-inside: avoid !important;
+      }
+
+      .cv {
+        background: #f9f9f9 !important;
+        color: #9e9e9e !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        display: grid !important;
+        grid-template-columns: 200px 1fr !important;
+        page-break-before: avoid !important;
+        page-break-after: avoid !important;
+        page-break-inside: avoid !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+      }
+
+      .side {
+        background: #e8e8e8 !important;
+        color: #303236 !important;
+        display: block !important;
+        page-break-inside: avoid !important;
+      }
+    
+      .section-title {
+        background: #d5d7d8  !important;
+        color: #303236 !important;
+        font-weight: bold;
+        border: none !important;
+      }
+
+      .contact, .skills, .tools, .muted {
+        color: #303236 !important;
+        border: none !important;
+      }
+
+      a {
+        color: #0a0a0a !important;
+        text-decoration: underline;
+      }
+      .print-note {
+        color: #444 !important;
+      }
+      .pill {
+        background: #d5d7d8 !important;
+        color: #303236 !important;
+        border: 1px solid #ccc !important;
+      }
+      /* Suppression du sélecteur universel qui peut causer des problèmes d'impression */
+      a::after{content:""}
+
+      .job, .project{
+        background: #f0f0f0 !important;
+        border: 1px solid #ccc !important;
+      }
+
+      .job ul li{line-height: 100%;font-size: 12px;}
+
+      .badge {
+        background: #f0f0f0  !important;
+        color: #0b93cc !important;
+      }
+      
+      .meta{color: #555 !important; font-style: italic;}
+    }
+
+    @media (max-width:820px){
+      .cv{grid-template-columns:1fr}
+      .side{display:flex;gap:14px;align-items:center}
+      .main{padding:10px}
+    }
+
+    :root{
+      --bg:#23272e;
+      --card:#282c34;
+      --muted:#abb2bf;
+      --accent:#e06c75;
+      --primary:#61dafb;
+      --gap:18px;
+      --max-width:900px;
+      --radius:12px;
+    }
+    *{box-sizing:border-box}
+  body{background:#fff;margin:24px;display:flex;justify-content:center}
+    em{
+      color:#d49306;
+      font-weight: bold;
+      font-style: normal;
+    }
+    .cv-editor-window {
+      width:100%;
+      max-width:var(--max-width);
+      border-radius:var(--radius);
+      box-shadow:0 8px 30px rgba(12,15,30,0.18);
+      overflow:hidden;
+      background:var(--card);
+      border:1.5px solid #181a1f;
+      font-family: 'Fira Mono', 'Consolas', 'Liberation Mono', monospace;
+      color:var(--muted);
+    }
+    .cv-editor-titlebar {
+      background:#21252b;
+      height:32px;
+      display:flex;
+      align-items:center;
+      padding:0 16px;
+      border-bottom:1px solid #181a1f;
+    }
+    .cv-editor-buttons {
+      display:flex;
+      gap:6px;
+      margin-right:12px;
+    }
+    .cv-editor-btn {
+      width:12px;height:12px;border-radius:50%;display:inline-block;
+    }
+    .cv-editor-btn.red{background:#ff5f56;border:1px solid #e0443e;}
+    .cv-editor-btn.yellow{background:#ffbd2e;border:1px solid #dea123;}
+    .cv-editor-btn.green{background:#27c93f;border:1px solid #13a10e;}
+    .cv-editor-title {
+      color:#d7dae0;
+      font-size:15px;
+      font-weight:bold;
+      margin-left:8px;
+      font-family:inherit;
+    }
+    .cv{width:100%;max-width:var(--max-width);background:linear-gradient(180deg,#23272e 0%, #282c34 100%);border-radius:0 0 var(--radius) var(--radius);box-shadow:none;overflow:hidden;display:grid;grid-template-columns:280px 1fr}
+    .side{background:linear-gradient(180deg,rgba(97,218,251,0.06),transparent);padding:28px 20px}
+    .photo{width:96px;height:96px;border-radius:14px;background:linear-gradient(135deg,var(--primary),#06b6d4);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:22px;margin-bottom:18px}
+    .name{font-size:20px;font-weight:700;margin-bottom:6px}
+    .role{font-size:13px;color:var(--muted);margin-bottom:14px}
+    .contact{margin-top:12px}
+    .skills, .tools, .languages{ margin-top:25px;}
+    .section-title{font-size:12px;font-weight:600;color:var(--primary);letter-spacing:0.6px;margin-bottom:10px; text-align: center;}
+    .muted{font-size:13px;color:var(--muted)}
+    .contact a{color:var(--primary);text-decoration:none}
+    .pill{display:inline-block;background:#1e2228;padding:6px 8px;border-radius:8px;font-size:12px;margin:4px 4px 4px 0}
+    .skill-list{display:flex;flex-wrap:wrap}
+    .main{padding:10px}
+    .summary{margin-bottom:14px}
+    .summary p{margin:0}
+    h2{font-size:15px;margin:0 0 5px 0;color:var(--primary);}
+    .job{padding:5px;border-radius:10px;margin-bottom:5px;background:#22252b;border:1px solid #181a1f;}
+    .job h3{margin:0;font-size:15px;color:#e06c75;}
+    .meta{font-size:13px;color:var(--muted);margin-bottom:8px}
+    .job ul li{line-height: 135%;}
+    ul{margin:0px;padding-left:25px}
+    .projects{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+    .project{border-radius:10px;padding:12px;background:#23272e;border:1px solid #181a1f}
+    .project h3{margin:0;font-size:14px;color:#e06c75}
+    .badge{font-size:11px;padding:4px 6px;border-radius:6px;background:#282c34;color:var(--primary);display:inline-block}
+    .print-note{font-size:12px;color:var(--muted);margin-top:8px}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    #edu-title + .job, #edu-title + .job ~ .job{display:inline-block;width:calc(33.33% - 8px);vertical-align:top}
+    #edu-title + .job:last-of-type{margin-right:0}
+  </style>
+</head>
+<body>
+  <div class="cv-editor-window">
+    <div class="cv-editor-titlebar">
+      <div class="cv-editor-buttons">
+        <span class="cv-editor-btn red"></span>
+        <span class="cv-editor-btn yellow"></span>
+        <span class="cv-editor-btn green"></span>
+      </div>
+      <span class="cv-editor-title">cv.html — Visual Studio Code</span>
+    </div>
+    <div>
+      <article class="cv" role="document" aria-label="CV Ingénieur Logiciel Embarqué">
+        <aside class="side">
+          <div style="display:flex;align-items:flex-start;gap:14px">
+            <div class="photo" aria-hidden="true">JS</div>
+            <div>
+              <div class="name">Prénom NOM</div>
+              <div class="role">Ingénieur Logiciel Embarqué — Firmware / RTOS / Drivers</div>
             </div>
+          </div>
+          <div class="contact" style="margin-top:14px">
+            <div class="section-title">Contact</div>
+            <div class="muted">📍 Grenoble, France</div>
+            <div class="muted">✉️ Uniquement par Linkedin (spam)</div>
+            <div class="muted">☎️ +336 00 00 00 00</div>
+            <div class="muted">🔗 <a href="">linkedin</a></div>
+            <div class="muted">    <a href="https://github.com/ecrin4102">github.com/ecrin4102</a></div>
+            <div class="muted">    <a href="https://gitlab.com/sirac">gitlab.com/sirac</a></div>
+          </div>
+          <div class="skills">
+            <div class="section-title">Compétences clés</div>
+            <div class="skill-list" aria-hidden="false">
+              <span class="pill">C embarqué</span>
+              <span class="pill">RTOS (FreeRTOS)</span>
+              <span class="pill">LoraWAN (V1.0.4)</span>
+              <span class="pill">Microcontrôleurs (STM32, Atmel)</span>
+              <span class="pill">Drivers & périphériques</span>
+              <span class="pill">Communication (USB, CAN)</span>
+              <span class="pill">Système sécuritaire (SIL0/SIL2)</span>
+            </div>
+          </div>
+          <div class="tools">
+            <div class="section-title">Outils & Environnements</div>
+            <div class="muted">STM32CubeIDE, VSCode </div>
+            <div class="muted">Git, Gitlab CI/CD</div>
+            <div class="muted">Docker, Linux</div>
+          </div>
+          <div class="languages">
+            <div class="section-title">Langues</div>
+            <div class="muted">Anglais (technique courant)</div>
+          </div>
+        </aside>
+        <main class="main">
+          <section class="summary">
+            <h2>Résumé</h2>
+            <p class="muted">Ingénieur logiciel embarqué avec <em>9 années</em> d'expérience dans le développement de firmware pour systèmes temps réel, conception de drivers et développement sur système critique (SIL0/SIL2) </p>
+          </section>
+          <section aria-labelledby="exp-title">
+            <h2 id="exp-title">Expérience</h2>
+            <div class="job" aria-labelledby="job1">
+              <h3>Ingénieur Firmware — Full electronic system</h3>
+              <div class="meta">Oct 2023 — Présent · Echirolles</div>
+              <ul class="muted">
+                <li>Migration stack <em>Lora</em> sur version 1.0.4 avec passage de la pre-certiciation validée et gestion trés basse consommation</li>
+                <li>Conception firmware intégrale d'un capteur de tension avec haute tension d'isolation. Conforme à la norme ferroviaire <em>SIL0</em></li>
+                <li>Développement d'un driver USB sur <em>STM32</em> pour supporter la fonction "hub" afin de connecter plusieurs périphériques</li>
+              </ul>
+            </div>
+            <div class="job" aria-labelledby="job2">
+              <h3>Ingénieur Logiciel Embarqué - Responsable R&D — Myotis</h3>
+              <div class="meta">Oct 2016 — Oct 20203 · Echirolles</div>
+              <ul class="muted">
+                <li>Conception SW/HW d'une station de mesure à forte contrainte temps réel et low power sur <em>STM32</em> et <em>FreeRtos</em>. Développement
+                  d'un simulateur sur PC, <em>gitlab CI/CD</em> et unit test automatique, multiples drivers (ADC externes, GPS, Modems 4G, FatFS...)
+                </li>
+                <li>Conception SW/HW d'une station de mesure radio sous <em>STM32</em> et <em>FreeRtos</em> ultra basse conso (10µA).</li>
+                <li>Supervision d'une équipe de 2 personnes, entretients d'embauche, rédaction des dossiers de financement, visites clients</li>
+                <li>Administration de serveurs linux, developpments de programmes et scripts applicatif</li>
+              </ul>
+            </div>
+            <div class="job" aria-labelledby="job2">
+              <h3>Alternance en ingénieur essai CEM — Myotis</h3>
+              <div class="meta">Sep 2013 — Sep 2016 · Echirolles</div>
+              <ul class="muted">
+                <li>Réalisation d'un banc de test automatique et d'un logiciel de monitoring en C# multithread avec connexion snmp</li>
+                <li>Passage des tests CEM sur les onduleurs en interne ou externe (cofrac)</li>
+                <li>Déplacement de 3mois en Finlande pour effectuer mon stage obligatoire</li>
+              </ul>
+            </div>
+          </section>
+          <section style="margin-top:12px" aria-labelledby="edu-title">
+            <h2 id="edu-title">Formation & Certifications</h2>
+            <div class="job">
+              <h3>Diplôme d'ingénieur — Polytech - Grenoble</h3>
+              <div class="meta">2013 — 2016 · Spécialité Systèmes Embarqués</div>
+            </div>
+            <div class="job">
+              <h3>DUT — GEII - Grenoble</h3>
+              <div class="meta">2011 — 2013 · Major de promotion - 1/4 de final au concours de robot</div>
+            </div>
+            <div class="job">
+              <h3>BAC — Bac S - Gap</h3>
+              <div class="meta">2011 — 2013 · Spé physique</div>
+            </div>
+        </main>
+      </article>
     </div>
-
-    <div class="wrap" style="clear: both;"></div>
-    <hr>
-    <div id="main-container">
-        <div id="sidebar">
-            <h2>Jordan IMBERT</h2>
-            <span id="job-description">Ingénieur en logiciel embarqué basé à Grenoble</span>
-            <ul id="picto">
-                    <li><i class="fi fi-sr-marker"></i>Grenoble</li>
-                    <li><i class="fi fi-brands-github"></i><a href="https://github.com/ecrin4102">Github</a></li>
-                    <li><i class="fi fi-brands-gitlab"></i><a href="https://gitlab.com/sirac">Gitlab</a></li>
-                    <li><i class="fi fi-brands-linkedin"></i><a href="https://www.linkedin.com/in/jordan-imbert-94b28290/">Linkedin</a></li>
-            </ul>
-        </div>
-        <div id="sub-container">
-            
-        </div>
-    </div>
-    <div id="footer"></div>
-    </body>
+  </div>
+</body>
 </html>
